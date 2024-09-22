@@ -1,0 +1,10 @@
+@import "../../../../shared/variable.scss";
+
+.management--table {
+	thead {
+		th {
+			background-color: $primary-medium;
+			color: #ececec;
+		}
+	}
+}

@@ -1,0 +1,112 @@
+<div class="modal fade show" tabindex="5">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Thêm mới cửa hàng</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					(click)="onNoClick()"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+					<input
+						hidden
+						aria-label="id"
+						nz-input
+						class="form-control"
+						formControlName="id"
+						id="id" />
+
+					<input
+						hidden
+						aria-label="idUser"
+						nz-input
+						class="form-control"
+						formControlName="idUser"
+						id="idUser" />
+
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzRequired
+							nzFor="name"
+							>Tên quán</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="This input is not have enough length!">
+							<input
+								aria-label="name"
+								nz-input
+								class="form-control"
+								formControlName="name"
+								id="name" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzFor="phone"
+							nzRequired
+							>Số điện thoại:</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="Vui lòng nhập số điện thoại">
+							<input
+								aria-label="phone"
+								class="form-control"
+								nz-input
+								type="text"
+								id="phone"
+								formControlName="phone" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzRequired
+							nzFor="address"
+							>Địa chỉ</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="This input is not have enough length!">
+							<input
+								aria-label="address"
+								nz-input
+								class="form-control"
+								formControlName="address"
+								id="address" />
+						</nz-form-control>
+					</nz-form-item>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					class="btn-primary-custom"
+					mat-stroked-button
+					(click)="onSubmit()">
+					Tạo mới
+				</button>
+				<button
+					type="button"
+					mat-stroked-button
+					data-bs-dismiss="modal"
+					(click)="onNoClick()">
+					Hủy
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

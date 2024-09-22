@@ -1,0 +1,70 @@
+<div class="management--wrapper">
+	<div class="management--header">
+		<div class="management--search">
+			<input aria-label="Search User" type="text" class="form-control" />
+		</div>
+		<div class="management--action">
+			<button mat-raised-button (click)="openAddDialog()">
+				Thêm mới người dùng
+			</button>
+		</div>
+		<!-- <div class="management--filter">
+			<mat-radio-group
+				aria-label="Select an option"
+				class="d-flex gap-4 w-100 group-filter">
+				<mat-radio-button value="1">Đã có quán</mat-radio-button>
+				<mat-radio-button value="2">Chưa có quán</mat-radio-button>
+			</mat-radio-group>
+		</div> -->
+	</div>
+	<div class="management--main">
+		<div class="management--table">
+			<table class="table">
+				<thead>
+					<tr>
+						<th
+							*ngFor="let columns of config.displayedColumns"
+							scope="col">
+							{{ columns.display }}
+						</th>
+						<th>-</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of listUser">
+						<th scope="row">{{ item.id }}</th>
+						<td>{{ item.username }}</td>
+						<td>{{ item.email }}</td>
+						<td>{{ item.phones }}</td>
+						<td class="table-actions">
+							<button
+								mat-raised-button
+								class="btn-management-edit"
+								matTooltip="Chỉnh sửa thông tin người dùng"
+								(click)="openEditDialog(item.id)"
+								aria-label="Edit">
+								<i class="fa-solid fa-user-pen"></i>
+							</button>
+							<button
+								mat-raised-button
+								class="btn-management-delete"
+								matTooltip="Xóa người dùng"
+								(click)="openDeleteDialog(item.id)"
+								aria-label="Delete">
+								<i class="fa-solid fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table--pagination">
+				<table-pagination
+					[_hasNext]="pagi.hasNextPage"
+					[_hasPrev]="pagi.hasPrevPage"
+					[_currentPage]="pagi.currentPage"
+					[_totalPage]="pagi.totalPage"
+					(changePage)="onChangePage($event)"></table-pagination>
+			</div>
+		</div>
+	</div>
+</div>

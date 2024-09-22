@@ -1,0 +1,139 @@
+<div class="modal fade show" tabindex="5">
+	<div class="modal-dialog modal-dialog-centered w-1000">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Chi tiết đơn đặt hàng</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					(click)="onNoClick()"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="detail-header" *ngIf="this.order !== undefined">
+					<p>Bàn số: {{ this.order.idTable }}</p>
+					<p>
+						Trạng thái:
+						<span
+							class="badge bg-warning"
+							*ngIf="!this.order.status">
+							Chưa tiếp nhận
+						</span>
+						<span
+							class="badge bg-success"
+							*ngIf="this.order.status">
+							Đã tiếp nhận
+						</span>
+					</p>
+				</div>
+
+				<div class="management--table">
+					<table class="table">
+						<thead>
+							<tr>
+								<th
+									*ngFor="
+										let columns of config.displayedColumns
+									"
+									scope="col">
+									{{ columns.display }}
+								</th>
+								<th *ngIf="config.hasAction">-</th>
+							</tr>
+						</thead>
+						<tbody *ngIf="listOrderDetail != undefined">
+							<tr *ngFor="let item of listOrderDetail">
+								<td>{{ item.food.name }}</td>
+								<!-- <td>
+									<img
+										[src]="item.food.imageUrl"
+										alt="{{ item.food.name }}"
+										loading="lazy" />
+								</td> -->
+								<td>
+									{{
+										item.food.idCategory
+											| categoryName
+											| async
+									}}
+								</td>
+								<td>{{ item.quantity }}</td>
+
+								<td>{{ item.food.price | price }}</td>
+								<td>{{ item.total | price }}</td>
+							</tr>
+						</tbody>
+						<tbody *ngIf="listOrderDetail == undefined">
+							<h3 class="text-center">Chưa có dữ liệu</h3>
+						</tbody>
+					</table>
+					<div class="table--pagination">
+						<table-pagination
+							[_hasNext]="pagi.hasNextPage"
+							[_hasPrev]="pagi.hasPrevPage"
+							[_currentPage]="pagi.currentPage"
+							[_totalPage]="pagi.totalPage"
+							(changePage)="
+								onChangePage($event)
+							"></table-pagination>
+					</div>
+				</div>
+
+				<div class="create-invoice" *ngIf="createInvoice">
+					<div class="create-invoice-form">
+						<div class="invoice-charge">
+							Phí:
+							<input
+								[(ngModel)]="invoice.charge"
+								(input)="
+									invoice.total = order.total + invoice.charge
+								"
+								aria-label="Charge"
+								type="number"
+								class="form-control" />
+						</div>
+						<div class="invoice-payment">
+							Phương thức thanh toán:
+							<select>
+								<option
+									[selected]="invoice.idPaymentType == 3"
+									(click)="invoice.idPaymentType = 3">
+									Tiền mặt
+								</option>
+							</select>
+						</div>
+						<div class="invoice-total">
+							Tổng tiền: <span>{{ invoice.total | price }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button
+					*ngIf="this.order.status"
+					type="button"
+					mat-raised-button
+					color="primary"
+					(click)="openCreateInvoiceDialog()">
+					Tạo hóa đơn
+				</button>
+				<button
+					*ngIf="!this.order.status"
+					type="button"
+					mat-raised-button
+					color="primary"
+					(click)="onSubmit()">
+					Xác nhận đơn đặt hàng
+				</button>
+				<button
+					type="button"
+					mat-stroked-button
+					data-bs-dismiss="modal"
+					(click)="onNoClick()">
+					Hủy
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

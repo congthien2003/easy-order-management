@@ -1,0 +1,89 @@
+<div class="management--wrapper">
+	<div class="management--header">
+		<h4 class="fw-bold">Quản lý hóa đơn</h4>
+
+		<div class="management--action">
+			<button
+				matTooltip="Lọc"
+				aria-label="Filter"
+				class="btn btn-sm btn-action-filter"
+				[matMenuTriggerFor]="menu">
+				<i class="fa fa-filter" aria-hidden="true"></i>
+			</button>
+			<mat-menu #menu="matMenu">
+				<button mat-menu-item (click)="changeFilter(1)">
+					<span class="filter-label-radio">Đã thanh toán</span>
+				</button>
+				<button mat-menu-item (click)="changeFilter(2)">
+					<span class="filter-label-radio">Chưa thanh toán</span>
+				</button>
+				<button mat-menu-item (click)="changeFilter(0)">
+					<span class="filter-label-radio">Tất cả</span>
+				</button>
+			</mat-menu>
+		</div>
+	</div>
+	<div class="management--main">
+		<div class="management--table">
+			<table class="table">
+				<thead>
+					<tr>
+						<th
+							*ngFor="let columns of config.displayedColumns"
+							scope="col">
+							{{ columns.display }}
+						</th>
+						<th>-</th>
+					</tr>
+				</thead>
+				<tbody *ngIf="listInvoice.length > 0">
+					<tr *ngFor="let item of listInvoice; index as index">
+						<th>{{ index + 1 }}</th>
+						<td>
+							{{ item.tableName }}
+						</td>
+						<td>
+							<span class="badge bg-warning" *ngIf="!item.status">
+								Chưa thanh toán
+							</span>
+							<span class="badge bg-success" *ngIf="item.status">
+								Đã thanh toán
+							</span>
+						</td>
+
+						<td class="table-actions">
+							<button
+								class="btn btn-sm btn-management-edit"
+								matTooltip="Chi tiết đơn đặt hàng"
+								(click)="openEditDialog(item.id)"
+								aria-label="Edit">
+								<i
+									class="fa fa-info-circle"
+									aria-hidden="true"></i>
+							</button>
+							<button
+								class="btn btn-sm btn-management-delete"
+								matTooltip="Xóa đơn đặt hàng"
+								(click)="openDeleteDialog(item.id)"
+								aria-label="Delete">
+								<i class="fa-solid fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+				<tbody *ngIf="listInvoice.length == 0">
+					<h3 class="text-center w-100">Chưa có dữ liệu</h3>
+				</tbody>
+			</table>
+			<div class="table--pagination" *ngIf="listInvoice.length > 0">
+				<table-pagination
+					[_hasNext]="pagi.hasNextPage"
+					[_hasPrev]="pagi.hasPrevPage"
+					[_currentPage]="pagi.currentPage"
+					[_totalPage]="pagi.totalPage"
+					(changePage)="onChangePage($event)"></table-pagination>
+			</div>
+		</div>
+		<app-spinner></app-spinner>
+	</div>
+</div>

@@ -1,0 +1,104 @@
+<div class="management--wrapper">
+	<h4 class="fw-bold">Quản lý bàn</h4>
+
+	<div class="management--header">
+		<div class="management--action">
+			<button class="btn btn-sm btn-action-add" (click)="addTable()">
+				Thêm mới
+			</button>
+			<button
+				matTooltip="Lọc"
+				aria-label="Filter"
+				class="btn btn-sm btn-action-filter"
+				[matMenuTriggerFor]="menu">
+				<i class="fa fa-filter" aria-hidden="true"></i>
+			</button>
+			<mat-menu #menu="matMenu">
+				<button mat-menu-item (click)="changeFilter(1)">
+					<span class="filter-label-radio">Bàn trống</span>
+				</button>
+				<button mat-menu-item (click)="changeFilter(2)">
+					<span class="filter-label-radio">Bàn bận</span>
+				</button>
+				<button mat-menu-item (click)="changeFilter(0)">
+					<span class="filter-label-radio">Tất cả</span>
+				</button>
+			</mat-menu>
+			<button class="btn btn-sm">Chọn template</button>
+		</div>
+	</div>
+	<div class="management--main">
+		<div class="management--table">
+			<div class="row" *ngIf="listTable.length > 0">
+				<div *ngFor="let item of listTable" class="col-6 col-lg-3">
+					<div class="table-card">
+						<div class="table--img">
+							<!-- <qrcode
+								#qrcode
+								value="{{
+									'https://create-tournament-v1.vercel.app/pages/customer/order/' +
+										item.idStore +
+										'/' +
+										item.id
+								}}"
+								mode="canvas"
+								[size]="sizeQR"></qrcode> -->
+							<app-template-qr></app-template-qr>
+						</div>
+						<div class="table--info">
+							<h4>{{ item.name }}</h4>
+							<p>
+								Trạng thái:
+								<span
+									*ngIf="item.status"
+									class="fw-bold text-success"
+									>Trống</span
+								>
+								<span
+									*ngIf="!item.status"
+									class="fw-bold text-danger"
+									>Bận</span
+								>
+							</p>
+							<div class="d-flex gap-2">
+								<button
+									matTooltip="Tải mã QR về máy"
+									mat-raised-button
+									class="btn-primary-custom"
+									(click)="downloadQR($event, item.id)">
+									<i class="fa-solid fa-download"></i>
+									Tải ảnh QR
+								</button>
+								<button
+									matTooltip="Xóa bàn này"
+									aria-label="Delete"
+									mat-raised-button
+									color="warn"
+									(click)="openDeleteDialog(item.id)">
+									<i
+										class="fa fa-trash"
+										aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="table--pagination" *ngIf="listTable.length > 0">
+				<table-pagination
+					[_hasNext]="pagi.hasNextPage"
+					[_hasPrev]="pagi.hasPrevPage"
+					[_currentPage]="pagi.currentPage"
+					[_totalPage]="pagi.totalPage"
+					(changePage)="onChangePage($event)"></table-pagination>
+			</div>
+
+			<h4 *ngIf="listTable.length == 0" class="text-center fw-bold">
+				Không tìm thấy danh sách bàn
+				<i class="fa fa-smile-o" aria-hidden="true"></i>
+			</h4>
+		</div>
+		<app-spinner></app-spinner>
+	</div>
+</div>

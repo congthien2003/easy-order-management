@@ -1,0 +1,74 @@
+<div class="management--wrapper">
+	<h4 class="fw-bold">Quản lý loại thức ăn</h4>
+
+	<div class="management--header">
+		<div class="management--search">
+			<input
+				aria-label="Search User"
+				type="text"
+				class="form-control"
+				[(ngModel)]="searchTerm"
+				(ngModelChange)="onSearchTerm()" />
+		</div>
+		<div class="management--action">
+			<button class="btn btn-sm btn-action-add" (click)="openAddDialog()">
+				Thêm mới
+			</button>
+		</div>
+		<!-- <div class="management--filter">
+			<mat-radio-group
+				aria-label="Select an option"
+				class="d-flex gap-4 w-100 group-filter">
+				<mat-radio-button value="1">Đã có quán</mat-radio-button>
+				<mat-radio-button value="2">Chưa có quán</mat-radio-button>
+			</mat-radio-group>
+		</div> -->
+	</div>
+	<div class="management--main">
+		<div class="management--table">
+			<table class="table">
+				<thead>
+					<tr>
+						<th
+							*ngFor="let columns of config.displayedColumns"
+							scope="col">
+							{{ columns.display }}
+						</th>
+						<th>-</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of listCategory; index as index">
+						<th scope="row">{{ index + 1 }}</th>
+						<td>{{ item.name }}</td>
+						<td class="table-actions">
+							<button
+								class="btn-management-edit btn btn-sm"
+								matTooltip="Chỉnh sửa thông tin người dùng"
+								(click)="openEditDialog(item.id)"
+								aria-label="Edit">
+								<i class="fa fa-edit" aria-hidden="true"></i>
+							</button>
+							<button
+								class="btn-management-delete btn btn-sm"
+								matTooltip="Xóa người dùng"
+								(click)="openDeleteDialog(item.id)"
+								aria-label="Delete">
+								<i class="fa-solid fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table--pagination">
+				<table-pagination
+					[_hasNext]="pagi.hasNextPage"
+					[_hasPrev]="pagi.hasPrevPage"
+					[_currentPage]="pagi.currentPage"
+					[_totalPage]="pagi.totalPage"
+					(changePage)="onChangePage($event)"></table-pagination>
+			</div>
+		</div>
+		<app-spinner></app-spinner>
+	</div>
+</div>

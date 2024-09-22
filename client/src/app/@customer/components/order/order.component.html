@@ -1,0 +1,116 @@
+<div class="order--wrapper">
+	<h1 class="store-name" *ngIf="this.store != undefined">{{ store.name }}</h1>
+
+	<div class="container">
+		<div class="order--header">
+			<div class="row">
+				<div class="col-9 col-lg-11">
+					<div class="order--search">
+						<input
+							aria-label="search"
+							type="text"
+							class="form-control"
+							[value]="search" />
+					</div>
+				</div>
+				<div class="col-3 col-lg-1">
+					<div class="order--actions" (click)="openCart()">
+						<button
+							[matBadge]="listOrderDetail.length"
+							matBadgeColor="accent"
+							aria-label="cart"
+							mat-raised-button
+							color="primary"
+							class="btn btn-sm w-100">
+							<i
+								class="fa fa-shopping-cart"
+								aria-hidden="true"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="order--main">
+			<div class="list-category">
+				<h4>Loại thức ăn</h4>
+				<mat-chip-listbox
+					aria-label="Category"
+					class="list-options mt-2">
+					<mat-chip-option
+						(click)="onChangeCategory(0)"
+						[selected]="selectedCategory == 0"
+						color="warn"
+						>Tất cả</mat-chip-option
+					>
+					<mat-chip-option
+						(click)="onChangeCategory(cate.id)"
+						[selected]="selectedCategory == cate.id"
+						*ngFor="let cate of listCategory"
+						>{{ cate.name }}</mat-chip-option
+					>
+				</mat-chip-listbox>
+			</div>
+			<div class="list-food">
+				<h4>Danh sách món ăn</h4>
+				<h5
+					class="text-center fw-bold fs-4 mt-2"
+					*ngIf="listFood.length == 0">
+					Không tìm thấy dữ liệu
+				</h5>
+				<div class="row" *ngIf="listFood.length > 0">
+					<div
+						class="col-6 col-lg-3 mt-3"
+						*ngFor="let food of listFood">
+						<div class="food-card">
+							<div class="food-img">
+								<img
+									height="100px"
+									[src]="food.imageUrl"
+									alt="" />
+							</div>
+							<div class="food-description">
+								<div
+									class="d-flex align-items-center justify-content-between">
+									<p class="food-cate-name">
+										{{
+											food.idCategory
+												| categoryName
+												| async
+										}}
+									</p>
+									<p class="food-price">
+										{{ food.price | price }}
+									</p>
+								</div>
+								<p class="food-name">{{ food.name }}</p>
+							</div>
+
+							<div class="food-button">
+								<button
+									(click)="addToCart(food.id)"
+									aria-label="Add"
+									mat-raised-button
+									color="accent"
+									class="btn-sm">
+									<i
+										class="fa fa-cart-plus"
+										aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				class="table--pagination d-flex align-items-center justify-content-center mt-2"
+				*ngIf="listFood.length > 0">
+				<table-pagination
+					[_hasNext]="pagiFood.hasNextPage"
+					[_hasPrev]="pagiFood.hasPrevPage"
+					[_currentPage]="pagiFood.currentPage"
+					[_totalPage]="pagiFood.totalPage"
+					(changePage)="onChangePage($event)"></table-pagination>
+			</div>
+		</div>
+	</div>
+</div>

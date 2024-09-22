@@ -1,0 +1,76 @@
+@import "../../../../../shared/variable.scss";
+@import "../../../../../shared/layout.scss";
+
+select {
+	padding: 4px 8px;
+	font-weight: 450;
+	outline: none;
+}
+
+.w-1000 {
+	max-width: 1000px;
+}
+
+@media (max-width: $mobile-breakpoint) {
+	.w-1000 {
+		max-width: 100%;
+	}
+}
+
+.detail-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 8px;
+
+	p {
+		color: $text-color-black;
+		font-size: 18px;
+		font-weight: 450;
+	}
+}
+
+.create-invoice {
+	margin-top: 24px;
+	display: flex;
+	align-items: center;
+	flex-direction: row-reverse;
+
+	&-form {
+		width: 350px;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		.invoice {
+			&-charge {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				color: $text-color-black;
+				gap: 12px;
+			}
+			&-payment {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				color: $text-color-black;
+				select {
+					outline: none;
+					border: 8px;
+				}
+			}
+			&-total {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				color: $text-color-black;
+				gap: 12px;
+				span {
+					display: inline-block;
+					font-weight: 450;
+					color: black;
+				}
+			}
+		}
+	}
+}

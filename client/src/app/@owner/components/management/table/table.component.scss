@@ -1,0 +1,36 @@
+@import "../../../../shared/variable.scss";
+@import "../../../../shared/layout.scss";
+
+.table {
+	&-card {
+		margin-top: 12px;
+		border: 1px solid #cecece;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		padding: 12px 8px;
+	}
+
+	&--info {
+		text-align: center;
+		color: black;
+
+		h4 {
+			margin-bottom: 8px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		p {
+			font-size: 16px;
+		}
+
+		button {
+			i {
+				background-color: transparent;
+			}
+		}
+	}
+}

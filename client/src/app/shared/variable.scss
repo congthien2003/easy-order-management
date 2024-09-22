@@ -1,0 +1,49 @@
+@import "./color.scss";
+
+$text-size: 16px;
+$mobile-breakpoint: 992px;
+* {
+	text-decoration: none;
+}
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.btn-primary-custom {
+	background-color: $primary !important;
+	color: white !important;
+}
+
+.btn-custom {
+	border-radius: 8px;
+}
+
+.modal.show {
+	display: block;
+}
+
+.modal {
+	&-header {
+		background-color: $primary-dark;
+	}
+	&-title {
+		font-size: 20px;
+		font-weight: bolder;
+		margin-bottom: 0;
+		color: white;
+	}
+	&-body {
+		font-size: 16px;
+	}
+}
+
+.btn {
+	font-weight: 500;
+	transition: 0.1s ease-in;
+	&:hover {
+		opacity: 0.9;
+	}
+}

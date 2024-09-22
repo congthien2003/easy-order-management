@@ -1,0 +1,180 @@
+<div class="modal fade show" tabindex="5">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Chỉnh sửa thông tin người dùng</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					(click)="onNoClick()"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+					<input
+						hidden
+						aria-label="id"
+						nz-input
+						class="form-control"
+						formControlName="id"
+						id="id" />
+
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzRequired
+							nzFor="username"
+							>Username</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="This input is not have enough length!">
+							<input
+								aria-label="username"
+								nz-input
+								class="form-control"
+								formControlName="username"
+								id="username" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzRequired
+							nzFor="email"
+							>E-mail</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="This input is not have enough length!">
+							<input
+								aria-label="email"
+								nz-input
+								class="form-control"
+								formControlName="email"
+								id="email" />
+						</nz-form-control>
+					</nz-form-item>
+
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzFor="password"
+							nzRequired
+							>Password</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="Please input your password!">
+							<input
+								aria-label="password"
+								class="form-control"
+								nz-input
+								type="password"
+								id="password"
+								formControlName="password"
+								(ngModelChange)="updateConfirmValidator()" />
+						</nz-form-control>
+					</nz-form-item>
+
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzFor="checkPassword"
+							nzRequired
+							>Confirm Password</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							[nzErrorTip]="errorTpl">
+							<input
+								class="form-control"
+								aria-label="confirm-password"
+								nz-input
+								type="password"
+								formControlName="checkPassword"
+								id="checkPassword" />
+							<ng-template #errorTpl let-control>
+								<ng-container
+									*ngIf="control.hasError('required')"
+									>Please confirm your password!</ng-container
+								>
+								<ng-container
+									*ngIf="control.hasError('confirm')">
+									Two passwords that you enter is
+									inconsistent!
+								</ng-container>
+							</ng-template>
+						</nz-form-control>
+					</nz-form-item>
+
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzFor="phoneNumber"
+							nzRequired
+							>Số điện thoại:</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="Vui lòng nhập số điện thoại">
+							<input
+								aria-label="phones"
+								class="form-control"
+								nz-input
+								type="text"
+								id="phones"
+								formControlName="phones" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzFor="roles"
+							nzRequired
+							>Vai trò:</nz-form-label
+						>
+						<nz-form-control [nzSm]="14" [nzXs]="24">
+							<select
+								class="form-select"
+								[value]="selectedValue"
+								aria-label="Vai trò">
+								<option value="0">Admin</option>
+								<option value="1">Owner</option>
+								<option value="2">Staff</option>
+							</select>
+						</nz-form-control>
+					</nz-form-item>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					class="btn-primary-custom"
+					mat-stroked-button
+					(click)="onSubmit()">
+					Tạo mới
+				</button>
+				<button
+					type="button"
+					mat-stroked-button
+					data-bs-dismiss="modal"
+					(click)="onNoClick()">
+					Hủy
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

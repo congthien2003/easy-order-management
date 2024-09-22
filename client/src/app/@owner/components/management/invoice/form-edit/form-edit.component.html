@@ -1,0 +1,116 @@
+<div class="modal fade show" tabindex="5">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Chi tiết hóa đơn</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					(click)="onNoClick()"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<h4 class="text-center fw-bold">
+					{{ this.data.invoice.tableName }}
+				</h4>
+
+				<div class="management--table">
+					<table class="table">
+						<thead>
+							<tr>
+								<th
+									*ngFor="
+										let columns of config.displayedColumns
+									"
+									scope="col">
+									{{ columns.display }}
+								</th>
+								<th *ngIf="config.hasAction">-</th>
+							</tr>
+						</thead>
+						<tbody *ngIf="listOrderDetail != undefined">
+							<tr *ngFor="let item of listOrderDetail">
+								<td>{{ item.food.name }}</td>
+
+								<td>{{ item.quantity }}</td>
+
+								<td>{{ item.total | price }}</td>
+							</tr>
+						</tbody>
+						<tbody *ngIf="listOrderDetail == undefined">
+							<h3 class="text-center">Chưa có dữ liệu</h3>
+						</tbody>
+					</table>
+					<div class="table--pagination">
+						<table-pagination
+							[_hasNext]="pagi.hasNextPage"
+							[_hasPrev]="pagi.hasPrevPage"
+							[_currentPage]="pagi.currentPage"
+							[_totalPage]="pagi.totalPage"
+							(changePage)="
+								onChangePage($event)
+							"></table-pagination>
+					</div>
+				</div>
+				<div class="invoice--info">
+					<div class="info-detail">
+						Tổng tiền đặt món:
+						<span class="info-price">{{
+							this.data.invoice.totalOrder | price
+						}}</span>
+					</div>
+					<div class="info-detail">
+						Chi phí phát sinh:
+						<span class="info-price">{{
+							this.data.invoice.charge | price
+						}}</span>
+					</div>
+					<div class="info-detail">
+						Phương thức thanh toán:
+						<span class="info-price">{{
+							this.data.invoice.paymentType.name
+						}}</span>
+					</div>
+					<div class="info-detail">
+						Trạng thái thanh toán:
+						<span class="info-price"
+							><span
+								class="badge bg-warning"
+								*ngIf="!this.data.invoice.status">
+								Chưa thanh toán
+							</span>
+							<span
+								class="badge bg-success"
+								*ngIf="this.data.invoice.status">
+								Đã thanh toán
+							</span></span
+						>
+					</div>
+					<div class="info-total">
+						Tổng tiền:
+						<span class="info-total-price">{{
+							this.data.invoice.total | price
+						}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					mat-raised-button
+					color="primary"
+					(click)="onSubmit()">
+					Xác nhận thanh toán
+				</button>
+				<button
+					type="button"
+					mat-stroked-button
+					data-bs-dismiss="modal"
+					(click)="onNoClick()">
+					Hủy
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

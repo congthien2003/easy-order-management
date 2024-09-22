@@ -1,0 +1,361 @@
+// Variables
+$sidebar-width: 250px;
+$sidebar-bg-color: $primary-light;
+$sidebar-text-color: rgb(255, 255, 255);
+$sidebar-hover-bg-color: #e9ecef;
+$mobile-breakpoint: 992px;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 0;
+}
+
+.layout-common {
+	display: flex;
+	min-height: 100vh;
+
+	.row {
+		width: 100%;
+	}
+
+	.button-mobile {
+		display: none;
+		position: fixed;
+		top: 10px;
+		left: 0;
+		z-index: 1000;
+		outline: none;
+		border: none;
+		background-color: $primary-light;
+		transition: 0.2s ease-in-out;
+
+		@media (max-width: $mobile-breakpoint) {
+			display: block;
+			&.show {
+				left: 198px;
+				background-color: #ef5350;
+			}
+		}
+	}
+
+	.owner-sidebar {
+		width: $sidebar-width;
+		background-color: $sidebar-bg-color;
+		color: $sidebar-text-color;
+		transition: all 0.3s;
+		height: 100vh;
+		position: fixed;
+		overflow-y: auto;
+
+		@media (max-width: $mobile-breakpoint) {
+			transform: translateX(-100%);
+			position: fixed;
+			z-index: 1001;
+			width: 200px;
+			&.show {
+				transform: translateX(0);
+			}
+		}
+
+		.sidebar-brand-text {
+			padding: 1rem;
+			font-size: 1.2rem;
+			font-weight: bold;
+			text-align: center;
+			@media (max-width: $mobile-breakpoint) {
+				padding-top: 1rem;
+				padding-bottom: 0.5rem;
+				font-size: 16px;
+			}
+		}
+
+		.sidebar-divider {
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
+			margin: 1rem 0;
+			@media (max-width: $mobile-breakpoint) {
+				margin: 0.5rem 0;
+			}
+		}
+
+		.sidebar-heading {
+			padding: 0.5rem 1rem;
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			font-weight: bold;
+
+			@media (max-width: $mobile-breakpoint) {
+				padding: 0.2rem 0.5rem;
+				font-size: 13px;
+			}
+		}
+
+		.sidebar-nav {
+			list-style: none;
+			padding: 0 12px;
+			.nav-item {
+				border-radius: 12px;
+				margin-top: 8px;
+				.nav-link {
+					display: block;
+					padding: 0.5rem 1rem;
+					color: $sidebar-text-color;
+					text-decoration: none;
+					transition: 0.1s ease-in;
+					font-size: 16px;
+					i {
+						margin-right: 0.5rem;
+					}
+					@media (max-width: $mobile-breakpoint) {
+						font-size: 13px;
+					}
+				}
+				&:hover {
+					background-color: $primary-dark;
+
+					.nav-link {
+						color: whitesmoke;
+						font-weight: bold;
+					}
+				}
+
+				&.active {
+					background-color: $primary-dark;
+					.nav-link {
+						color: whitesmoke;
+						font-weight: bold;
+					}
+				}
+			}
+			@media (max-width: $mobile-breakpoint) {
+				padding: 0 4px;
+			}
+		}
+
+		.logout {
+			padding: 1rem;
+
+			.logout-button {
+				width: 100%;
+			}
+		}
+	}
+
+	.owner-content {
+		padding: 2rem;
+		@media (max-width: $mobile-breakpoint) {
+			padding: 0.5rem;
+		}
+	}
+}
+
+@media (max-width: $mobile-breakpoint) {
+	.col-0 {
+		width: 0;
+	}
+
+	.button-mobile {
+		display: block;
+		background-color: $primary;
+		color: white;
+	}
+}
+
+.management {
+	&--wrapper {
+		padding: 4px 32px;
+
+		@media (max-width: $mobile-breakpoint) {
+			padding: 4px 16px;
+		}
+	}
+
+	&--header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		@media (max-width: $mobile-breakpoint) {
+			height: 40px;
+		}
+	}
+
+	&--search {
+		min-width: 25%;
+		width: 50%;
+		input {
+			width: 100%;
+		}
+		@media (max-width: $mobile-breakpoint) {
+			height: 30px;
+
+			input {
+				height: 100%;
+			}
+		}
+	}
+
+	&--filter {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		.group-filter {
+			border: 1px solid #cecece;
+			padding: 0 16px;
+			border-radius: 12px;
+		}
+
+		@media (max-width: $mobile-breakpoint) {
+			gap: 8px;
+			display: none;
+		}
+	}
+
+	&--table {
+		margin-top: 24px;
+		@media (max-width: $mobile-breakpoint) {
+			margin-top: 8px;
+		}
+		thead {
+			th {
+				background-color: $primary;
+				color: #ececec;
+				border-right: 1px solid #cecece;
+			}
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 20px 0;
+			font-size: 16px;
+			text-align: left;
+			@media (max-width: $mobile-breakpoint) {
+				margin: 8px 0;
+			}
+		}
+
+		th,
+		td {
+			padding: 12px 15px;
+
+			@media (max-width: $mobile-breakpoint) {
+				padding: 4px 6px;
+				font-size: 10px;
+			}
+		}
+
+		th {
+			background-color: #f4f4f4;
+			font-weight: bold;
+			color: #333;
+			vertical-align: middle;
+
+			@media (max-width: $mobile-breakpoint) {
+				vertical-align: top;
+			}
+		}
+
+		tbody tr:nth-child(even) {
+			background-color: #f9f9f9;
+		}
+
+		tbody tr:hover {
+			background-color: #f1f1f1;
+		}
+
+		tbody td {
+			min-height: 70px;
+			vertical-align: middle;
+
+			@media (max-width: $mobile-breakpoint) {
+				min-height: 50px;
+
+				vertical-align: top;
+			}
+		}
+
+		img {
+			max-width: 100px;
+			height: auto;
+			display: block;
+			border-radius: 8px;
+			max-height: 90px;
+
+			@media (max-width: $mobile-breakpoint) {
+				max-height: 80px;
+			}
+		}
+
+		td img {
+			padding: 5px;
+		}
+
+		.table--pagination {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.table-actions {
+			.btn-management {
+				&-edit {
+					background-color: $primary-dark;
+					color: white;
+					height: 25px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					@media (max-width: $mobile-breakpoint) {
+						height: 20px;
+						i {
+							font-size: 10px;
+						}
+					}
+				}
+
+				&-delete {
+					background-color: #ef5350;
+					color: whitesmoke;
+					height: 25px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin-top: 8px;
+					@media (max-width: $mobile-breakpoint) {
+						height: 20px;
+						i {
+							font-size: 10px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&--action {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		.btn-action-add {
+			background-color: $primary-medium;
+			color: white;
+		}
+		.btn-action-filter {
+			border: 1px solid $primary-light;
+		}
+		@media (max-width: $mobile-breakpoint) {
+			button {
+				font-size: 10px;
+			}
+		}
+	}
+
+	&--main {
+		max-height: 100vh;
+	}
+}

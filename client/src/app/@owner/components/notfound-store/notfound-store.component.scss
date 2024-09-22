@@ -1,0 +1,20 @@
+.main {
+	height: 80vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.notfound {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+
+		h3 {
+			font-size: 28px;
+			font-weight: 600;
+			color: rgb(69, 69, 69);
+		}
+	}
+}

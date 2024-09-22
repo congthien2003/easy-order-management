@@ -1,0 +1,126 @@
+<div class="modal fade show" tabindex="5">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Chỉnh sửa</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					(click)="onNoClick()"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+					<input
+						hidden
+						aria-label="id"
+						nz-input
+						class="form-control"
+						formControlName="id"
+						id="id" />
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzRequired
+							nzFor="name"
+							>Tên</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="This input is not have enough length!">
+							<input
+								aria-label="name"
+								nz-input
+								class="form-control"
+								formControlName="name"
+								id="name" />
+						</nz-form-control>
+					</nz-form-item>
+
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzRequired
+							nzFor="price"
+							>Giá</nz-form-label
+						>
+						<nz-form-control
+							[nzSm]="14"
+							[nzXs]="24"
+							nzErrorTip="This input is not have enough length!">
+							<input
+								aria-label="price"
+								nz-input
+								class="form-control"
+								formControlName="price"
+								id="price" />
+						</nz-form-control>
+					</nz-form-item>
+
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzRequired
+							nzFor="image"
+							>Hình ảnh</nz-form-label
+						>
+						<nz-form-control [nzSm]="14" [nzXs]="24">
+							<img
+								width="200px"
+								height="200px"
+								*ngIf="this.food?.imageUrl"
+								[src]="this.food.imageUrl"
+								alt="img" />
+							<input
+								type="file"
+								aria-label="image"
+								accept=".jpg, .jpeg, .png"
+								(change)="handleChange($event)" />
+						</nz-form-control>
+					</nz-form-item>
+
+					<nz-form-item>
+						<nz-form-label
+							[nzSm]="8"
+							[nzXs]="24"
+							nzRequired
+							nzFor="idCategory"
+							>Loại:
+						</nz-form-label>
+
+						<nz-form-control [nzSm]="14" [nzXs]="24">
+							<select formControlName="idCategory">
+								<option
+									*ngFor="let item of this.data.listCategory"
+									[ngValue]="item.id">
+									{{ item.name }}
+								</option>
+							</select>
+						</nz-form-control>
+					</nz-form-item>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button
+					type="button"
+					mat-raised-button
+					color="primary"
+					(click)="onSubmit()">
+					Lưu
+				</button>
+				<button
+					type="button"
+					mat-stroked-button
+					data-bs-dismiss="modal"
+					(click)="onNoClick()">
+					Hủy
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

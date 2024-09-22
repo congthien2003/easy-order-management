@@ -1,0 +1,117 @@
+@import "../../../shared/color.scss";
+
+.order {
+	&--wrapper {
+		.store-name {
+			text-align: center;
+			font-weight: 600;
+			font-size: 28px;
+			color: whitesmoke;
+			width: 100%;
+			border-bottom: 1px solid #cecece;
+			background-color: $primary-medium;
+			padding: 8px 12px;
+			margin-bottom: 0;
+		}
+		.container {
+			padding: 16px 1.5rem;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+		}
+	}
+	&--header {
+		.row {
+			min-height: 30px;
+
+			.order--search {
+				input {
+					height: 30px;
+				}
+			}
+			.order--actions {
+				width: 60px;
+
+				button {
+					height: 30px;
+				}
+			}
+		}
+	}
+
+	&--main {
+		margin-top: 12px;
+		h4 {
+			color: $text-color-black;
+			font-weight: 550;
+			margin-bottom: 0;
+		}
+		.list-category {
+			margin-top: 12px;
+		}
+		.list-food {
+			margin-top: 12px;
+
+			.food {
+				&-card {
+					border: 1px solid #cecece;
+					border-radius: 16px;
+					overflow: hidden;
+					display: flex;
+					gap: 12px;
+					flex-direction: column;
+				}
+				&-img {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					img {
+						max-width: 100%;
+						max-height: 100%;
+						object-fit: cover;
+					}
+				}
+				&-description {
+					padding: 4px 8px;
+					display: flex;
+					flex-direction: column;
+					gap: 12px;
+					height: 80px;
+					p {
+						margin-bottom: 0;
+					}
+				}
+
+				&-cate-name {
+					font-weight: 500;
+				}
+				&-name {
+					font-weight: 450;
+					color: $text-color-black;
+				}
+				&-price {
+					font-weight: 450;
+					color: $text-color-black;
+				}
+				&-button {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin-top: auto;
+					button {
+						height: 30px;
+						width: 100%;
+						border-top-left-radius: 0;
+						border-top-right-radius: 0;
+					}
+				}
+			}
+		}
+	}
+
+	&--footer {
+		margin-top: 24px;
+		border-top: 1px solid #cecece;
+	}
+}

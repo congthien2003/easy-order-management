@@ -1,0 +1,75 @@
+@import "../../../shared/variable.scss";
+
+.modal-body {
+	max-height: 50vh;
+	overflow-y: scroll;
+}
+
+.modal-footer {
+	.disabled {
+		opacity: 0.8;
+		background-color: $primary-light;
+	}
+}
+
+.list-cart-item {
+	display: flex;
+	flex-direction: column;
+
+	h5 {
+		color: $text-color-black;
+		font-size: 14px;
+		font-weight: 450;
+	}
+
+	.cart-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 8px;
+		position: relative;
+		transition: 0.15s ease-out;
+
+		&-name {
+			font-size: 14px;
+			color: $text-color-black;
+			font-weight: 450;
+		}
+		&-price {
+			font-size: 13px;
+			font-weight: 400;
+		}
+		&-quantity {
+			color: $text-color-black;
+			font-size: 13px;
+			font-weight: 400;
+		}
+		&-total {
+			color: $text-color-black;
+			font-size: 13px;
+			font-weight: 450;
+		}
+
+		.cart-action {
+			position: absolute;
+			content: "";
+			top: 0;
+			right: -4px;
+		}
+	}
+}
+
+.total-order {
+	border-top: 1px solid #cecece;
+	display: flex;
+	align-items: center;
+	flex-direction: row-reverse;
+	padding: 4px 1rem;
+	margin-top: 8px;
+	p {
+		font-size: 14px;
+		font-weight: 450;
+		color: $text-color-black;
+		margin-bottom: 0;
+	}
+}

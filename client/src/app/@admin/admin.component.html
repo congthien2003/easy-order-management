@@ -1,0 +1,66 @@
+<div class="layout-common">
+	<div class="row g-0">
+		<div class="col-2">
+			<div
+				class="navbar-nav admin-sidebar layout-common-sidebar sidebar sidebar-dark accordion"
+				id="accordionSidebar">
+				<!-- Sidebar - Brand -->
+				<a
+					class="sidebar-brand d-flex align-items-center justify-content-center"
+					href="/pages">
+					<div class="sidebar-brand-icon rotate-n-15">
+						<i class="fa-solid fa-hippo"></i>
+					</div>
+					<div class="sidebar-brand-text mx-3">
+						Admin <sup>2</sup>
+					</div>
+				</a>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider my-0" />
+
+				<!-- Nav Item - Dashboard -->
+				<li
+					class="nav-item"
+					[class.active]="0 == activeIndex"
+					(click)="swithRoute(0)">
+					<button class="nav-link">
+						<i class="fas fa-fw fa-tachometer-alt"></i>
+						<span>Dashboard</span>
+					</button>
+				</li>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider" />
+
+				<!-- Heading -->
+				<div class="sidebar-heading">Management</div>
+
+				<!-- Nav Item - Pages Collapse Menu -->
+				<li
+					class="nav-item"
+					[class.active]="1 == activeIndex"
+					(click)="swithRoute(1)">
+					<button class="nav-link">
+						<i class="fa-solid fa-user"></i>
+						<span>User</span>
+					</button>
+				</li>
+				<li
+					class="nav-item"
+					[class.active]="2 == activeIndex"
+					(click)="swithRoute(2)">
+					<button class="nav-link">
+						<i class="fa-solid fa-store"></i>
+						<span>Store</span>
+					</button>
+				</li>
+			</div>
+		</div>
+		<div class="col-10">
+			<div class="admin-content layout-common-content">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</div>
+</div>

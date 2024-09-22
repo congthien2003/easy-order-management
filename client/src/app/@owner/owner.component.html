@@ -1,0 +1,149 @@
+<div class="layout-common">
+	<div class="row g-0">
+		<div class="col-lg-2 col-0">
+			<div
+				class="owner-sidebar layout-common-sidebar"
+				[class.show]="statusNavbar">
+				<!-- Sidebar - Brand -->
+				<div class="sidebar-brand-text">
+					{{ store.name }}
+				</div>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider" />
+
+				<!-- Heading -->
+				<div class="sidebar-heading">Quản lý</div>
+
+				<ul class="sidebar-nav">
+					<li
+						class="nav-item"
+						[class.active]="1 == activeIndex"
+						(click)="swithRoute(1)">
+						<button class="nav-link">
+							<i class="fa-solid fa-circle-info"></i>
+							<span>Thông tin cửa hàng</span>
+						</button>
+					</li>
+					<li
+						class="nav-item"
+						[class.active]="2 == activeIndex"
+						(click)="swithRoute(2)">
+						<button class="nav-link">
+							<i class="fa-solid fa-list"></i>
+							<span>Bàn</span>
+						</button>
+					</li>
+					<li
+						class="nav-item"
+						[class.active]="3 == activeIndex"
+						(click)="swithRoute(3)">
+						<button class="nav-link">
+							<i class="fa-solid fa-list"></i>
+							<span>Loại món ăn</span>
+						</button>
+					</li>
+					<li
+						class="nav-item"
+						[class.active]="4 == activeIndex"
+						(click)="swithRoute(4)">
+						<button class="nav-link">
+							<i class="fa-solid fa-bowl-food"></i>
+							<span>Món ăn</span>
+						</button>
+					</li>
+					<li
+						class="nav-item"
+						[class.active]="5 == activeIndex"
+						(click)="swithRoute(5)">
+						<button class="nav-link">
+							<i class="fa-solid fa-bell"></i>
+							<span>Đơn đặt hàng</span>
+						</button>
+					</li>
+					<li
+						class="nav-item"
+						[class.active]="6 == activeIndex"
+						(click)="swithRoute(6)">
+						<button class="nav-link">
+							<i class="fa-solid fa-file-invoice-dollar"></i>
+							<span>Hóa đơn</span>
+						</button>
+					</li>
+					<!-- <li
+					class="nav-item"
+					[class.active]="7 == activeIndex"
+					(click)="swithRoute(7)">
+					<button class="nav-link">
+						<i class="fa-solid fa-user"></i>
+						<span>Nhân viên</span>
+					</button>
+				</li> -->
+
+					<li
+						class="nav-item"
+						[class.active]="8 == activeIndex"
+						(click)="swithRoute(8)">
+						<button class="nav-link">
+							<i class="fa-solid fa-chart-line"></i>
+							<span>Thống kê</span>
+						</button>
+					</li>
+				</ul>
+				<hr class="sidebar-divider" />
+
+				<div class="sidebar-heading">Người dùng</div>
+				<!-- Nav Item - Dashboard -->
+				<ul class="sidebar-nav">
+					<li
+						class="nav-item"
+						[class.active]="9 == activeIndex"
+						(click)="swithRoute(9)">
+						<button class="nav-link">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+							<span>Thông tin người dùng</span>
+						</button>
+					</li>
+					<li
+						class="nav-item"
+						[class.active]="10 == activeIndex"
+						(click)="swithRoute(10)">
+						<button class="nav-link">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+							<span>Đổi mật khẩu</span>
+						</button>
+					</li>
+				</ul>
+				<!-- Divider -->
+				<hr class="sidebar-divider" />
+				<div
+					class="logout d-flex align-items-center justify-content-center mt-auto px-2 py-2">
+					<button
+						(click)="logOut()"
+						mat-stroked-button
+						class="w-75 logout-button bg-white">
+						Đăng xuất
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-10 col-12">
+			<button
+				aria-label="toggle"
+				type="button"
+				class="btn btn-sm button-mobile"
+				[class.show]="statusNavbar"
+				(click)="openNavbar()">
+				<i *ngIf="!statusNavbar" class="fas fa-align-left"></i>
+				<i *ngIf="statusNavbar" class="fa fa-close"></i>
+			</button>
+			<div class="container">
+				<div class="owner-content layout-common-content">
+					<notfound-store *ngIf="!haveStore"></notfound-store>
+
+					<router-outlet *ngIf="haveStore"></router-outlet>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

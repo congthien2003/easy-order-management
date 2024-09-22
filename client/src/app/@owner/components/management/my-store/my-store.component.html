@@ -1,0 +1,43 @@
+<div class="container d-flex align-items-center justify-content-center">
+	<div class="store-info">
+		<h2>Thông tin quán của bạn</h2>
+
+		<!-- Thông tin tên store -->
+		<div class="store-field">
+			<label for="store-name">Tên Quán</label>
+			<span *ngIf="!isEditing">{{ store.name }}</span>
+			<input
+				*ngIf="isEditing"
+				id="store-name"
+				type="text"
+				[(ngModel)]="store.name" />
+		</div>
+
+		<!-- Thông tin địa chỉ store -->
+		<div class="store-field">
+			<label for="store-phone">Số điện thoại</label>
+			<span *ngIf="!isEditing">{{ store.phone }}</span>
+			<input
+				*ngIf="isEditing"
+				id="store-phone"
+				type="text"
+				[(ngModel)]="store.phone" />
+		</div>
+
+		<!-- Thông tin địa chỉ store -->
+		<div class="store-field">
+			<label for="store-address">Địa chỉ quán</label>
+			<span *ngIf="!isEditing">{{ store.address }}</span>
+			<input
+				*ngIf="isEditing"
+				id="store-address"
+				type="text"
+				[(ngModel)]="store.address" />
+		</div>
+
+		<!-- Nút Chỉnh sửa hoặc Lưu -->
+		<button mat-raised-button color="primary" (click)="toggleEdit()">
+			{{ isEditing ? "Lưu" : "Chỉnh sửa" }}
+		</button>
+	</div>
+</div>

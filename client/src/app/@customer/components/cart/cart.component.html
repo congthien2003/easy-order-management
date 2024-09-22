@@ -1,0 +1,107 @@
+<div class="modal fade show" tabindex="5">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Giỏ hàng của bạn</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					(click)="onNoClick()"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<h4
+					class="text-center text-bold"
+					*ngIf="listCartItem.length == 0">
+					Giỏ hàng đang trống, hãy đặt món đi nào !
+				</h4>
+				<ul class="list-cart-item" *ngIf="listCartItem.length > 0">
+					<div class="container px-1 py-1">
+						<div class="row">
+							<div class="col-5">
+								<h5 class="">Món ăn</h5>
+							</div>
+							<div class="col-3">
+								<h5 class="">Số lượng</h5>
+							</div>
+							<div class="col-4">
+								<h5 class="">Thành tiền</h5>
+							</div>
+						</div>
+					</div>
+
+					<li class="cart-item" *ngFor="let item of listCartItem">
+						<div class="container px-1 py-1">
+							<div class="row">
+								<div class="col-5">
+									<div class="cart-item-name">
+										{{ item.Food?.name }}
+									</div>
+									<div class="cart-item-price">
+										{{ item.Food!.price | price }}
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="cart-item-quantity">
+										{{ item.quantity }}
+									</div>
+								</div>
+								<div class="col-4">
+									<div class="cart-item-total">
+										{{ item.price | price }}
+									</div>
+									<div class="cart-action">
+										<button
+											(click)="
+												deleteCartItem(
+													item.Food?.id ?? -1
+												)
+											"
+											class="btn-sm btn btn-danger"
+											matTooltip="Xóa món ăn"
+											aria-label="Delete">
+											<i class="fa-solid fa-trash"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="total-order">
+				<p>
+					Tổng tiền: <span> {{ totalOrder | price }} </span>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button
+					disabled
+					*ngIf="this.data.submitOrderStatus"
+					type="button"
+					mat-stroked-button
+					color="accent">
+					<i class="fa fa-smile-o" aria-hidden="true"></i> Đang xử lý
+				</button>
+				<button
+					*ngIf="
+						!this.data.submitOrderStatus || listCartItem.length == 0
+					"
+					type="button"
+					mat-raised-button
+					color="primary"
+					(click)="onSubmit()">
+					Đặt món
+				</button>
+				<button
+					type="button"
+					mat-stroked-button
+					data-bs-dismiss="modal"
+					(click)="onNoClick()">
+					Thoát
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

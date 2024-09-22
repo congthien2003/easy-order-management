@@ -1,0 +1,45 @@
+@import "../../../../shared/color.scss";
+@import "../../../../shared/layout.scss";
+.store-info {
+	width: 400px;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	background-color: #f9f9f9;
+}
+
+h2 {
+	text-align: center;
+	color: rgb(34, 34, 34);
+}
+
+.store-field {
+	margin-bottom: 15px;
+	height: 40px;
+}
+
+label {
+	font-weight: bold;
+	margin-right: 10px;
+	display: inline-block;
+	width: 100px;
+	color: rgb(34, 34, 34);
+}
+
+span {
+	color: #2c2c2c;
+	padding: 5px;
+}
+
+input {
+	padding: 5px;
+	font-size: 14px;
+	width: calc(100% - 120px);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+button {
+	display: block;
+	margin-left: auto;
+}

@@ -1,0 +1,19 @@
+<h1>Phương thức thanh toán</h1>
+<div class="input">
+	<label for="name">Tên phương thức</label>
+	<input
+		aria-label="name"
+		name="name"
+		id="for"
+		type="text"
+		[(ngModel)]="name" />
+	<button mat-raised-button color="primary">Thêm</button>
+</div>
+
+<div class="list-payment">
+	<ul>
+		<li *ngFor="let item of listPayment" class="payment-item">
+			{{ item.name }}
+		</li>
+	</ul>
+</div>
